@@ -1,0 +1,30 @@
+// prisma/schema.prisma
+// Define your database models
+
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url = "postgres://ae44d02a7d1ec3d2d00cb1a7a28dc18888666d7aa66772bd59acac91767d5fbe:sk_6d9vND9JqByshB2qO5FTR@db.prisma.io:5432/postgres?sslmode=require"
+}
+
+// Example models
+
+model User {
+  id    Int     @id @default(autoincrement())
+  email String  @unique
+  name  String?
+  posts Post[]
+}
+
+model Post {
+  id        Int     @id @default(autoincrement())
+  title     String
+  content   String?
+  published Boolean @default(false)
+  author    User    @relation(fields: [authorId], references: [id])
+  authorId  Int
+}
