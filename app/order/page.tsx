@@ -1,11 +1,22 @@
 'use client'
 import { useEffect, useState } from "react";
 
-
+type ProductItem = {
+  id: string;
+  name: string;
+  quantity: number;
+  price: number;
+}
+type CartItem = {
+  id:string;
+  order_id: string;
+  total_price: number;
+  products: ProductItem[];
+};
 
 export default function Page(){
 
-    const [orders, setOrders] = useState([]);
+    const [orders, setOrders] = useState<CartItem[]>([]);
     async function fetchOrderList() {
         const res = await fetch('/api/order')
         if(res.ok){
@@ -20,7 +31,7 @@ export default function Page(){
             await fetchOrderList();
         }
         loadOrder();
-    }, ([]));
+    }, []);
 
     return(
         <div className="rounded-4xl bg-neutral-800 w-[70%] flex flex-col ms-15 mt-10 items-center md:mx-40 xl:w-[80%] xl:ms-50">
@@ -33,7 +44,7 @@ export default function Page(){
                   >
                     <p className="text-xl">Order Id: {order.order_id}</p>
                     <ul className="flex flex-col p-2">
-                      {order.products.map((product) =>(
+                      {order.products?.map((product) =>(
                         <li key={product.id} className="flex flex-col rounded-4xl bg-neutral-800 my-3 p-5">
                           <p>Product name: {product.name}</p>
                           <p>Quantity: {product.quantity}</p>

@@ -12,7 +12,9 @@ const sizes = [
     {size:'XXL',quantity: '9+'},
 ];
 
-export default async function Page({params}){
+type PageProps = {params: {id: string;};};
+
+export default async function Page({params}: PageProps){
 
     const paramsData = await params;
     console.log(paramsData);
