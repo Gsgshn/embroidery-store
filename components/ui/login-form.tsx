@@ -10,8 +10,8 @@ import {
 
 import { useActionState } from 'react';
 import { authenticate } from '@/lib/actions';
-import { useSearchParams } from 'next/navigation';
-import { useRouter } from 'next/navigation';
+import { useSearchParams, useRouter } from 'next/navigation';
+
  
 export default function LoginForm() {
   const router = useRouter();
