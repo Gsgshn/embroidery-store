@@ -1,21 +1,19 @@
 import Image from "next/image"
 import Link from "next/link"
+import { Product } from "@/lib/definitions"
 
 
-export default function ProductCard(){
+export default function ProductCard(product: Product){
 
     return(
         <div className=" flex flex-row  w-auto bg-neutral-800 rounded-4xl ">
             <Link
-                href='/product'>
-                 <Image 
-                    src='https://torch-fff.com/upload/iblock/3a7/3a7ba28335d9786587eb951f48d54397.jpg'
-                    width={1872}
-                    height={2340}
-                    alt={''}
+                href={`/product/${product.id}`}>
+                 <img 
+                    src={product.image_url}
                     className='rounded-4xl w-full' />
-                <h1 className='font-bold m-2 text-3xl'>YummYumm</h1>
-                <h2 className='mx-2 mb-2 text-2xl'>2800 рубленых</h2>
+                <h1 className='font-bold m-2 text-3xl'>{product.name}</h1>
+                <h2 className='mx-2 mb-2 text-2xl'>{product.price} рубленых</h2>
             </Link>
            
         </div>
