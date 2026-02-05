@@ -8,13 +8,13 @@ export default function CategoryList(){
     const [open, setOpen] = useState(false);
     const searchParams = useSearchParams();
     const pathname = usePathname();
-    const ref = useRef(null); 
+    const ref = useRef<HTMLDivElement>(null); 
     const {replace} = useRouter();
      const categories = ["T-shirt", "Shirt", "Hoody", "Sweater","Jersey","Scarf"];
 
      useEffect(()=>{
-        const handleClickOutside = (event) =>{
-            if (ref.current && !ref.current.contains(event.target)){
+        const handleClickOutside = (event: MouseEvent) =>{
+            if (ref.current && !ref.current.contains(event.target as Node)){
                 setOpen(false);
             }
         };

@@ -4,8 +4,13 @@ import { Product } from "@/lib/definitions";
 import { useSession } from "next-auth/react";
 import { useCart } from "../providers/CartProvider";
 
+type ProductType = {
+  id: string;
+  
+}
 
-export default function AddToCartButton({ product }) {
+
+export default function AddToCartButton({ product } : {product: ProductType}) {
   const [loading, setLoading] = useState(false);
   
   const {data: session, status} = useSession();
