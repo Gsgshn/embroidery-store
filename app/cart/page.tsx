@@ -16,7 +16,7 @@ type CartItem = {
 
 export default function CartPage() {
   const [items, setItems] = useState<CartItem[]>([]);
-  const {cart, setCart} = useCart();
+  const {cart, setCart} = useCart()!;
 
   async function fetchCart() {
     const res = await fetch("/api/cart");
