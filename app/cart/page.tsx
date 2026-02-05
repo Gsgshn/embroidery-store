@@ -2,11 +2,12 @@
 import AddToOrderButton from "@/components/ui/addToOrderButton";
 import { useEffect, useState } from "react";
 import  { XMarkIcon } from "@heroicons/react/24/outline";
-import { products } from "@/lib/placeholder-data";
+
 import { useCart } from "@/components/providers/CartProvider";
 
 
 type CartItem = {
+  id:string;
   product_id: string;
   name: string;
   image_url: string;
@@ -126,15 +127,3 @@ export default function CartPage() {
     </div>
   );
 }
-{/* <div className="m-5 ">
-              
-              
-              </div>
-              
-              
-            </div>
-            <div className="flex  gap-2  border h-[10%]">
-             
-              
-              
-            </div> */}

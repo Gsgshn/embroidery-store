@@ -1,21 +1,30 @@
-import { createContext, useContext, useEffect, useState } from "react";
+"use client";
 
-const CartContext = createContext(null);
+import { createContext, useContext, useState } from "react";
 
-export const CartProvider = ({ children }) => {
-  const [cart, setCart] = useState(false);
+type CartContextType = {
+  cart: boolean;
+  setCart: React.Dispatch<React.SetStateAction<boolean>>;
+};
 
-   
-      
-      
+const CartContext = createContext<CartContextType | null>(null);
 
-  
+export const CartProvider = ({ children }: { children: React.ReactNode }) => {
+  const [cart, setCart] = useState<boolean>(false);
 
   return (
-    <CartContext.Provider value={{ cart, setCart} }>
+    <CartContext.Provider value={{ cart, setCart }}>
       {children}
     </CartContext.Provider>
   );
 };
 
-export const useCart = () => useContext(CartContext);
+export const useCart = () => {
+  const context = useContext(CartContext);
+
+  if (!context) {
+    throw new Error("useCart must be used within CartProvider");
+  }
+
+  return context;
+};
